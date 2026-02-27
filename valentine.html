@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Date Proposal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Images */
+        .images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .image {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            min-width: 180px;
+        }
+
+        button:hover {
+            background: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        button.no {
+            background: #757575;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 18px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day! 💖</h1>
+    <p>
+        I've created this special page just for you.  
+        You've been on my mind, and I was wondering...
+    </p>
+
+    <div class="images">
+        <img src="Practice/images/pick4.jpeg" alt="Me" class="image">
+        <img src="Practice/images/pick1.jpeg" alt="Me" class="image">
+        <img src="Practice/pick3.jpeg" alt="Me" class="image">
+    </div>
+
+    <p><strong>Would you like to go on a date with me?</strong></p>
+
+    <div class="buttons">
+        <button onclick="respond('yes')">Yes, I'd love to! 😊</button>
+        <button class="no" id="noButton" onmouseenter="moveButton()">Maybe another time</button>
+    </div>
+</div>
+
+<script>
+    function respond(answer) {
+        if (answer === 'yes') {
+            alert("Yay! I'm so excited! ❤️ Let's plan it!");
+        }
+    }
+
+    function moveButton() {
+        const btn = document.getElementById("noButton");
+        const container = document.querySelector(".container");
+
+        const maxX = container.clientWidth - btn.offsetWidth;
+        const maxY = container.clientHeight - btn.offsetHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        btn.style.position = "absolute";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    }
+</script>
+
+</body>
+</html>
