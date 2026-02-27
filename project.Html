@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <Style>            
-        
-        .banner{
-           
+    <Style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .banner {
+
             height: 100vh;
             overflow: hidden;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
         }
-        .banner .product{
-            
+
+        .banner .product {
+
             width: 500px;
             height: 500px;
             position: absolute;
             bottom: 170px;
-            left : 50%;
+            left: 50%;
             transform: translateX(-50%);
             z-index: 1;
             transition: 0.7s;
-            --left : 0px;
+            --left: 0px;
             display: flex;
         }
-        .banner .product .soda{
-            background: 
-                var(--url) var(--left)  0,    
+
+        .banner .product .soda {
+            background:
+                var(--url) var(--left) 0,
                 url(Practice/images/Soda\1.png);
             background-size: auto 100%;
             width: 280px;
@@ -40,27 +51,28 @@
             mask-size: auto 100%;
             -webkit-mask-size: auto 100%;
             transition: 0.7s;
-            position: absolute;
+            /* position: absolute; */
             left: 50%;
             transform: translateX(-50%);
         }
 
-        .banner .product:hover{
-            --left :1000px;
-            transform: translateX(-50%) translateY(-120px);
+        .banner .product:hover {
+            --left: 1000px;
+            transform: translateX(-50%) translateY(-360px);
         }
-
     </Style>
-    </head>
-    <body>
-            
-        <div class="banner">
-            <div class="product">
-              <div class="soda" style="--url: url('Practice/images/Soda1.png')"></div>
-              <div class="soda" style="--url: url('Practice/images/Soda2.png')"></div>
+</head>
 
-            </div>
+<body>
+
+    <div class="banner">
+        <div class="product">
+            <div class="soda" style="--url: url('Practice/images/Soda 1.png')"></div>
+            <div class="soda" style="--url: url('Practice/images/Soda2.png')"></div>
+
         </div>
+    </div>
 
-    </body>
-    </html>
+</body>
+
+</html>
