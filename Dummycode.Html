@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAMAHA WEB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+
+        @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+        @import url('https://fonts.cdnfonts.com/css/poppins');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgba(88, 86, 86, 0.471);
+            background-image: 
+                repeating-linear-gradient(to right, transparent 0 100px,
+                #25283b22 100px 101px), 
+                repeating-linear-gradient(to bottom, transparent 0 100px,
+                #25283b22 100px 101px);
+            overflow: hidden;
+        }
+        
+        .banner {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* 3D slider - Behind everything */
+        .banner .slider {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            top: 10%;
+            left: calc(50% - 100px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            animation: autoRun 20s linear infinite;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes autoRun {
+            from {
+                transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+            }
+            to {
+                transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+            }
+        }
+
+        .banner .slider .item {
+            position: absolute;
+            inset: 0;
+            transform: 
+                rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+                translateZ(550px);
+        }
+
+        /* important part if you to make any change in the image property */
+        .banner .slider .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        /* .content container your writing work */
+        .banner .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0 50px 100px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 5;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+        }
+
+        .banner .content > * {
+            pointer-events: auto;
+        }
+
+        /* YAMAHA Title - left Bottom */
+        .banner .content h1 {
+            font-family: 'ICA Rubrik', sans-serif;
+            font-size: 10em;
+            line-height: 0.7em;
+            color: #25283B;
+            position: relative;  
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -10px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .banner .content .author {
+            font-family: 'Poppins', sans-serif;
+            text-align: right;
+            max-width: 300px;
+            transition: transform 0.1s ease-out;
+        }
+
+        .banner .content h1::after {
+            position: absolute;
+            inset: 0;
+            content: attr(data-content);
+            z-index: 1; 
+            -webkit-text-stroke: 2px white;
+            color: transparent;
+        }
+       
+        .banner .content h2 {
+            font-size: 3em;
+        }
+
+        /* Model - In front of slider, behind text */
+        .banner .model {
+            background-image: url(Practice/images/Model\ Logo.png);
+            width: 100%;
+            height: 70vh;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-size: auto 130%;
+            background-repeat: no-repeat;
+            background-position: top center;
+            z-index: 3;
+            transition: transform 0.1s ease-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="banner" id="banner">
+        <div class="slider" style="--quantity: 10" id="slider">
+            <div class="item" style="--position: 1"><img src="Practice/images/image copy 8.png" alt=""></div>
+            <div class="item" style="--position: 2"><img src="Practice/images/image.png" alt=""></div>
+            <div class="item" style="--position: 3"><img src="Practice/images/image copy.png" alt=""></div>
+            <div class="item" style="--position: 4"><img src="Practice/images/image copy 9.png" alt=""></div>
+            <div class="item" style="--position: 5"><img src="Practice/images/image copy 7.png" alt=""></div>
+            <div class="item" style="--position: 6"><img src="Practice/images/image copy 6.png" alt=""></div>
+            <div class="item" style="--position: 7"><img src="Practice/images/image copy 5.png" alt=""></div>
+            <div class="item" style="--position: 8"><img src="Practice/images/image copy 4.png" alt=""></div>
+            <div class="item" style="--position: 9"><img src="Practice/images/image copy 3.png" alt=""></div>
+            <div class="item" style="--position: 10"><img src="Practice/images/image copy 2.png" alt=""></div>
+        </div>
+
+        <!-- Model moved outside content for proper z-index -->
+        <div class="model" id="model"></div>
+
+        <div class="content" id="content">
+            <h1 data-content="YAMAHA" id="title">YAMAHA</h1>
+            <div class="author" id="author">
+                <h2>YAMAHA</h2>
+                <p><b>Web Design</b></p>
+                <p>
+                    <b>
+                        Yamaha's top 10 legends range from the track-ready 
+                        <strong>R1</strong> and <strong>R6</strong> to torque-heavy streetfighters 
+                        like the <strong>MT-07</strong> and <strong>MT-09</strong>.
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mouse move parallax effect
+        const banner = document.getElementById('banner');
+        const slider = document.getElementById('slider');
+        const model = document.getElementById('model');
+        const content = document.getElementById('content');
+        const title = document.getElementById('title');
+        const author = document.getElementById('author');
+
+        banner.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            // Calculate movement amounts (different for each layer)
+            const moveX = (x - 0.5) * 2; // -1 to 1
+            const moveY = (y - 0.5) * 2; // -1 to 1
+
+            // Slider moves opposite to mouse (background layer)
+            slider.style.transform = `
+                perspective(1000px) 
+                rotateX(${-16 + (moveY * 5)}deg) 
+                rotateY(${moveX * 30}deg)
+                translateX(${-moveX * 30}px)
+                translateY(${-moveY * 30}px)
+            `;
+
+            // Model moves slightly (middle layer)
+            model.style.transform = `
+                translateX(${moveX * 20}px) 
+                translateY(${-moveY * 10}px)
+                scale(${1 + Math.abs(moveY) * 0.05})
+            `;
+
+            // Content moves with mouse (front layer)
+            content.style.transform = `
+                translateX(${moveX * 15}px) 
+                translateY(${moveY * 15}px)
+            `;
+
+            // Title has extra movement
+            title.style.transform = `
+                translateX(${moveX * 25}px) 
+                translateY(${moveY * 10}px)
+            `;
+
+            // Author moves differently
+            author.style.transform = `
+                translateX(${moveX * 10}px) 
+                translateY(${moveY * 20}px)
+            `;
+        });
+
+        // Reset on mouse leave
+        banner.addEventListener('mouseleave', () => {
+            slider.style.transform = 'perspective(1000px) rotateX(-16deg) rotateY(0deg)';
+            model.style.transform = 'translateX(0) translateY(0) scale(1)';
+            content.style.transform = 'translateX(0) translateY(0)';
+            title.style.transform = 'translateX(0) translateY(0)';
+            author.style.transform = 'translateX(0) translateY(0)';
+        });
+    </script>
+
+</body>
+</html>
