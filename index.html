@@ -1,154 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YAMAHA WEB</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <Style>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
         @import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
         @import url('https://fonts.cdnfonts.com/css/poppins');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            background-color: rgba(88, 86, 86, 0.471);
-            background-image: 
-                repeating-linear-gradient(to right, transparent 0 100px,
-                #25283b22 100px 101px ), 
-
-                repeating-linear-gradient(
-
-                    to bottom, transparent 0 100px,
-                    #25283b22 100px 101px
-                );
+            font-family: 'Poppins', sans-serif;
+            background-color: rgba(88, 86, 86, 0.47);
+            background-image:
+                repeating-linear-gradient(to right, transparent 0 100px, #25283b22 100px 101px),
+                repeating-linear-gradient(to bottom, transparent 0 100px, #25283b22 100px 101px);
+            overflow-x: hidden;
         }
-        .banner{
-            width:100%;
-            height: 100vh;
-            text-align: center;
+
+        /* ===== Banner ===== */
+        .banner {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
             overflow: hidden;
-            position: relative;  
-            
         }
-        /* 3D slider - Behind everything */
-        .banner .slider{
+
+        /* ===== 3D Slider ===== */
+        .banner .slider {
             position: absolute;
-            width: 200px;
-            height: 250px;
-            top: 10%;
-            left: calc(50% - 100px);
+            width: clamp(160px, 20vw, 220px);
+            height: clamp(200px, 30vw, 280px);
+            top: 8%;
+            left: 50%;
             transform-style: preserve-3d;
-            transform: perspective(1000px);
-            animation: autoRun 20s ease-in infinite;
+            transform: translateX(-50%) perspective(1000px);
+            animation: autoRun 20s linear infinite;
             z-index: 1;
-            
         }
-        @keyframes autoRun{
-            0%{
-                transform: perspective(1000px)  rotateY(0deg);
-            }100%{
-                transform: perspective(1000px)  rotateY(360deg);
+
+        @keyframes autoRun {
+            from {
+                transform: translateX(-50%) perspective(1000px) rotateY(0deg);
+            }
+
+            to {
+                transform: translateX(-50%) perspective(1000px) rotateY(360deg);
             }
         }
 
-        .banner .slider .item{
+        .banner .slider .item {
             position: absolute;
             inset: 0;
-            transform: 
-            /* rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))* 1deg)) */
-            rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
-            translateZ(550px);
-            
+            transform:
+                rotateY(calc((var(--position) - 1) * (360deg / var(--quantity)))) translateZ(clamp(260px, 40vw, 550px));
         }
-        /* important part if you to make any change in the image property */
-        .banner .slider .item img{
+
+        .banner .slider .item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            border-radius: 10%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
-        
-        /* .content contaner your writin work */
-        .banner .content{
+
+        /* ===== Content ===== */
+        .banner .content {
             position: absolute;
-            bottom: 0;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            padding: 0 50px 100px 50px;
+            inset: 0;
+            padding: clamp(20px, 4vw, 60px);
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             z-index: 5;
-            pointer-events: none;
-             /* let clicks pass through to slder */
-/*             
-            transform: translateX(-50%);
-            width: min(1400px, 100vw);
-            height: max-content;
-            padding-bottom: 100px;
-            display: flex;
-            flex-wrap: wrap; */
-            /* justify-content: pushed iteam to left and right; */
-            /* align-items: bottom; */
-            
-
-        }
-        .banner .content > *{
-            pointer-events: auto;
         }
 
-        /* YAMAHA Tittle - left Bottom  if you want to make any changes */
-        .banner .content h1{
+        /* ===== Title ===== */
+        .banner .content h1 {
             font-family: 'ICA Rubrik', sans-serif;
-            font-size: 10em;
-            line-height: 0.7em;
+            font-size: clamp(3.5rem, 12vw, 10rem);
+            line-height: 0.85;
             color: #25283B;
-            position: relative;  
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: -10px;      
+            letter-spacing: -6px;
+            position: relative;
         }
 
-         .banner .content .author{
-            font-family: poppins;
-            text-align: right;
-            max-width: 200px;
-        }
-
-        .banner .content h1::after{
-            position: absolute;
-            inset: 0 0 0 0;
+        .banner .content h1::after {
             content: attr(data-content);
-            z-index: 1; 
+            position: absolute;
+            inset: 0;
             -webkit-text-stroke: 2px white;
             color: transparent;
         }
-       
-        .banner .content h2{
-            font-size: 3em;
+
+        /* ===== Author Text ===== */
+        .banner .content .author {
+            max-width: 280px;
+            text-align: right;
         }
-        .banner .content .model{
-            background-image: url(Practice/images/Model\ Logo.png);
-            width: 100%;
-            height: 70vh;
+
+        .banner .content .author h2 {
+            font-size: clamp(1.5rem, 3vw, 3rem);
+        }
+
+        .banner .content .author p {
+            font-size: 0.9rem;
+        }
+
+        /* ===== Model Image ===== */
+        .banner .content .model {
             position: absolute;
             bottom: 0;
             left: 0;
-            background-size: auto 130%;
+            width: 100%;
+            height: clamp(40vh, 60vh, 70vh);
+            background-image: url("Practice/images/Model Logo.png");
             background-repeat: no-repeat;
+            background-size: auto 120%;
             background-position: top center;
-            z-index: 10;
+            z-index: 4;
+            pointer-events: none;
         }
 
-    </Style>
+        /* ===== Mobile Layout ===== */
+        @media (max-width: 768px) {
+
+            .banner .content {
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .banner .content .author {
+                text-align: center;
+            }
+
+            .banner .slider {
+                top: 5%;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="banner">
@@ -171,21 +173,22 @@
                 YAMAHA
             </h1>
             <div class="author">
-               <h2>YAMAHA</h2>
-               <p><b>Web Design</b></p>
-               
+                <h2>YAMAHA</h2>
+                <p><b>Web Design</b></p>
 
-             <p>
+
+                <p>
                     <b>
-                         Yamaha’s top 10 legends range from the track-ready 
-                        <strong>R1</strong> and <strong>R6</strong> to torque-heavy streetfighters 
+                        Yamaha’s top 10 legends range from the track-ready
+                        <strong>R1</strong> and <strong>R6</strong> to torque-heavy streetfighters
                         like the <strong>MT-07</strong> and <strong>MT-09</strong>.
-                     </b>
+                    </b>
                 </p>
-         </div>
+            </div>
             <div class="model"></div>
         </div>
     </div>
 
 </body>
+
 </html>
